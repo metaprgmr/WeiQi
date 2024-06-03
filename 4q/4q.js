@@ -176,6 +176,30 @@ class FourQ {
     this.startsWithBlack = true;
   }
 
+  _parseSGFHeaders(txt) {
+     var a = txt.trim().split(']');
+     for (var i in a) {
+       var tuple = a[i].split('[');
+       if (tuple.length < 2) continue;
+       var val = tuple[1].trim();
+       switch(tuple[0]) {
+       case 'PB': this.info['Player-Black'] = val; break;
+       case 'PW': this.info['Player-White'] = val; break;
+       case 'BR': this.info['Black-Rank'] = val; break;
+       case 'WR': this.info['White-Rank'] = val; break;
+       case 'EV': this.info['Event'] = val; break;
+       case 'PC': this.info['Place'] = val; break;
+       case 'DT': this.info['Date'] = val; break;
+       case 'C':  this.info['Comment'] = val; break;
+       case 'GS': this.info['Game-Size'] = val; break;
+       case 'HA': this.info['Handicap'] = val; break;
+       case 'KM': this.info['Komi'] = val; break;
+       case 'RE': this.info['Result'] = val; break;
+       case 'GN': this.info['Game-Name'] = val; break;
+       case 'RU': this.info['Rule'] = val; break;
+       }
+     }
+  }
   parseSGF(txt) { // No branches! only ;B[] and ;W[] records. Other junk is fine.)
     var a = txt.split('\n');
     txt = ''; for (var i in a) txt += a[i].trim();
@@ -184,10 +208,10 @@ class FourQ {
       return;
     }
 
-    // TODO: read headers
     var idx1 = txt.indexOf(';B[');
     var idx2 = txt.indexOf(';W[');
     var curB = this.startsWithBlack = idx2 > idx1;
+    this._parseSGFHeaders(txt.substring(1, Math.min(idx1,idx2)));
     idx1 = idx2 = 0
     while (true) {
       if (curB)
@@ -203,7 +227,6 @@ class FourQ {
       idx1 = idx2;
       curB = !curB;
     }
-    this.info['Comment'] = 'SGF GAME INFO IS NOT SUPPORTED YET.';
   }
 
   export4Q(type) {
@@ -222,6 +245,7 @@ class FourQ {
     expHdr('White-Rank');
     expHdr('Game-Size');
     expHdr('Handicap');
+    expHdr('Rule');
     expHdr('Komi');
     expHdr('Result');
     expHdr('Place');
@@ -257,6 +281,7 @@ class FourQ {
     expHdr('Game-Size', 'GS');
     expHdr('Handicap', 'HA');
     expHdr('Komi', 'KM');
+    expHdr('Rule', 'RU');
     expHdr('Result', 'RE');
     expHdr('Game-Name', 'GN');
     expHdr('Event', 'EV');
