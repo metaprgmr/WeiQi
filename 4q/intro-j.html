@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>4Q围棋记谱法</title>
+<style>
+body { font-size:22px }
+td { font-size:22px }
+a { text-decoration:none }
+bd  { background-color:#eeeeee; color:gray; }
+.bdfont { font-size:18px }
+lm1 { color:red; font-weight:bold; background-color:yellow }
+lm2 { color:red; font-weight:bold; }
+ln  { color:blue; background-color:lightgreen; }
+nbr { color:red; font-weight:normal; }
+ex  { background-color:lightpink; color:blue }
+sta { color:black; font-weight:bold }
+bla { color:white; background-color:black }
+whi { color:black; background-color:lightgray }
+</style>
+<script src="intro.js"></script>
+<body bgcolor="#e7f0bb">
+<div align=center>
+
+<table width="1200px"><tr><td width="300px"></td><td align=center><h2>4Q 围棋记谱法</h2></td>
+<td width="300px" align=right valign=top style="font-size:16px"><a href="intro-e.html">English</a> | <a href="intro.html">正體字</a></td></tr></table>
+
+<div style="width:1200px" align=left>
+
+<p>一纸一笔，轻松记谱；棋子方位，一目了然。4Q记谱法的目标就是特別方便人眼察看、记录。例如，四个三三的位置分別标記为：A3，B3，C3，D3；或者为A33等，依个人喜好。性急的朋友可以直接看<a style="background:#FFE0F0" href="4qdemo.html">这个演示</a>。</p>
+
+<h3>一、九方位、多地标、相对记谱</h3>
+
+<p>4Q记谱法的全名是「四象限围棋记谱法」。细究起來，可谓「九方位、多地标、相对记谱法」。顾名思意，此法划分棋盘为九部分，棋子的方位快速显现；多以地标相对关系标示，避免、减少数格子，精确定点。其效果是，全盘近半的位置可以不用XY座标；座标值都是单位数，而且是相对于四个角的顶点，十分容易查找、对应。这在在的一切，都是为了方便人脑对子位的解读，尽量减少、简化中间翻译过程。</p>
+
+<p>四象限记谱法，绝非首创；然目下此法当接近于最优解。或有雷同者，殊无怪也；未曾广征博研，纯粹自创。毕竟这也不是什么了不起的大难题。但结果和效用令人振奋！</p>
+
+<h3>二、最基本型</h3>
+
+<p>九个方位是：四个9x9的象限，四条中间线，外加天元。九部分刚好对应九颗星。</p>
+
+<table><tr>
+<td valign=top> <script>drawBoard(board0, false, false, true);</script> </td>
+<td width="40px"></td><td valign=top>
+<ol style="padding-top:40px">
+<li style="padding-top:20px">四个象限命名为甲、乙、丙、丁，記作A、B、C、D；<br>以持黑棋者的左下角为甲，顺时针方向递进。
+    <ul><li>座标取橫先竖后，由顶而出，顶点值为1。</li>
+        <li>对角线上点的座标纵横值相等，可化简为一。<br>比如B22可以写成B2。</li></ul></li>
+<li style="padding-top:20px">四颗边星命名为东、南、西、北，记作E、S、W、N，<br>以持黑棋者作正观。
+  <ul><li>座标只需一个数字，以边点为1、至天元边为9。</li></ul></li>
+<li style="padding-top:20px">天元記作O。</li>
+<li style="padding-top:20px">九颗星直接用其所属部分之名为其表达式。</li>
+</ol>
+</td></tr></table>
+
+<p>如下诸例。</p>
+
+<table><tr>
+<td valign=top> <script>drawBoard(board1, false, true);</script> </td>
+<td width="40px"></td><td valign=top style="padding-top:70px; padding-left:100px">
+<table>
+<tr><td>a:</td><td><td>A32</td></tr>
+<tr><td>b:</td><td><td>A25</td></tr>
+<tr><td>c:</td><td><td>W3</td></tr>
+<tr><td>d:</td><td><td>A79</td></tr>
+<tr><td>e:</td><td><td>W7</td></tr>
+<tr><td>f:</td><td><td>B64</td></tr>
+<tr><td>g:</td><td><td>B46</td></tr>
+<tr><td>h:</td><td><td>B6</td></tr>
+<tr><td>i:</td><td><td>C63</td></tr>
+<tr><td>j:</td><td><td>C37</td></tr>
+<tr><td>k:</td><td><td>C3</td></tr>
+<tr><td>m:</td><td><td>D45</td></tr>
+<tr><td>n:</td><td><td>D54</td></tr>
+<tr><td>p:</td><td><td>E9</td></tr>
+<tr><td>q:</td><td><td>S5</td></tr>
+</table>
+</td></tr></table>
+
+<table><tr>
+<td valign=top>
+<h3>三、更多地标点</h3>
+
+<p>九个星位堪称基本地标。然棋盘浩大，需更多地标。为此，选择两星之中点，作为第二级地标点，如右图。</p>
+<p>譬如A星，它与S星之间的中间点記为AS，与W星中间点記为AW，与天元中间点記为AO。其余象限以此类推。</p>
+<p>如此，得一级地标点9个，二级地标点16个，总计25个。</p>
+</td>
+<td width="40px"></td><td valign=top>
+<td valign=top> <script>drawBoard(board0, true, false, true);</script> 
+</td></tr></table>
+
+<h3>四、地标相邻点</h3>
+
+<p>我们对地标点的上下左右也赋予特別表达，分別附记以^、<、>、v。友情提示：相对关系是黑方棋手的取向。如此得下面的示意图。</p>
+
+<table><tr>
+<td valign=top> <script>drawBoard(board2, true, true);</script> 
+
+<p>&nbsp;</p>
+
+<h3>五、结语</h3>
+
+<p>4Q就这么简单、好记、好用。请各位自己总结，釐清思路。下次斗棋时，勿忘带上一纸一笔，随时记谱。<br>
+祝你棋艺日日涨，越活越年轻！</p>
+
+<p><a style="background:#FFE0F0" href="4qdemo.html">这个演示</a>让你参照、比较各种座标系统，包括同个点4Q所支持的所有可接受表达式。</p>
+
+<p><a style="background:#FFE0F0" href="tool-j.html">这个转换工具</a>可以在4Q和SGF之间互相转换。</p>
+
+</td>
+<td width="40px"></td><td valign=top>
+<p style="padding-top:60px">譬如A43，也可标为Av；A78可标为AO^；S9可标为Ov。</p>
+<p>如此，完全不用座标值的点共有125个。加上其余的单位数座标36个，总共有161个位置不用数格子就可定位。</p>
+<p>当然，如果你不愿意用这些表达方式，而单用、或部分用数字座标，也是沒有错的，可以自由选择。</p>
+
+<p>下面來看一个假想的布局作为例子。<br><img src="fictitious-fuseki.jpg"></p>
+
+</td></tr></table>
+
+<p>&nbsp;</p>
+<hr>
+<div align=center>文初成於公元2024年6月</div>
+</div></body></html>

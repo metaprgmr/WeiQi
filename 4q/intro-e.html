@@ -1,0 +1,119 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>4Q Go Game Format</title>
+<style>
+body { font-size:20px }
+td { font-size:20px }
+a { text-decoration:none }
+bd  { background-color:#eeeeee; color:gray; }
+.bdfont { font-size:18px }
+lm1 { color:red; font-weight:bold; background-color:yellow }
+lm2 { color:red; font-weight:bold; }
+ln  { color:blue; background-color:lightgreen; }
+nbr { color:red; font-weight:normal; }
+ex  { background-color:lightpink; color:blue }
+sta { color:black; font-weight:bold }
+bla { color:white; background-color:black }
+whi { color:black; background-color:lightgray }
+</style>
+<script src="intro.js"></script>
+<body bgcolor="#e7f0bb">
+<div align=center>
+
+<h2>The <i>4Q</i> Go Game Format</h2>
+
+<div style="width:1200px" align=left>
+
+<p>The 4Q Go Game Format was conceived for the sole purpose of facilitating human reading and writing of Go game records. For instance, the four San-San poins are simply A3, B3, C3, and D3; or, if you prefer, A33, etc. For the real impatient, jump right in to this <a style="background:#FFE0F0" href="4qdemo-e.html">demo</a>, which shows everything.</p>
+
+<h3>I. Nine Locations, Multiple Landmarks, and Relative Positions</h3>
+
+<p>A more formal name of the 4Q Go Game Format would be "four-quadrant Go record keeping". Further more, it can also be characterized as "nine locations, multiple landmarks, and relative positions". Essentially, it partitions the board into nine areas, so that mentally visulizing positions becomes much more intuitive than a simplistic XY coordinates system. Better yet, because of its relative nature, all the meaningful connotations of the positions (San-San is a perfect example) are retained and reflected by the symbols. Thanks to the myriads of natural landmark points, nearly half the positions need no XY coordinates, which greatly reduces the burden of mental mapping.</p>
+
+<p>Go game record keeping by quadrants is not a new idea at all. However, the method introduced here appears to be close to optimal. There are most likely similar schemes available, which have not been explored and researched extensively, and this work is totally original. This would not be a huge crime by any means, nor is it an earth-shattering breakthough of any kind. Yet, its usefulness, effectiveness and aesthetics turn out to be very inspiring and rewarding!</p>
+
+<h3>II. The Basic Structure</h3>
+
+<p>The nine partitions of a board are: four 9-by-9 quadrants, four center lines (between quadrants), and Tengen. Incidentally, each partition is identified by one of the nine stars on the board.</p>
+
+<table><tr>
+<td valign=top> <script>drawBoard(board0, false, false, true);</script> </td>
+<td width="40px"></td><td valign=top>
+<ol style="padding-top:40px">
+<li style="padding-top:20px">The four quadrants, named A, B, C, and D, starts from the lower-left corner of the player playing black, and progresses clockwise.
+    <ul><li>The coordinates are typical mathematical tuples of XY, originating from the tip of the corner, whose value is 1.</li>
+        <li>The diagonals have the same X and Y values, the coordinates need just one digit. E.g. B22 equates to B2.</li></ul></li>
+<li style="padding-top:20px">The four side stars are named East, West, North and South, facing the player playing black, noted with the first letter of each.
+  <ul><li>The coordinates need just a single digit, starting from 1 which is on the edge of the board.</li></ul></li>
+<li style="padding-top:20px">Tengen is noted as O.</li>
+<li style="padding-top:20px">The nine stars themselves are noted with their respective letters without any digits, but it is not a crime to append 4 or 44 to it.</li>
+</ol>
+</td></tr></table>
+
+<p>Below are a few examples.</p>
+
+<table><tr>
+<td valign=top> <script>drawBoard(board1, false, true);</script> </td>
+<td width="40px"></td><td valign=top style="padding-top:70px; padding-left:100px">
+<table>
+<tr><td>a:</td><td><td>A32</td></tr>
+<tr><td>b:</td><td><td>A25</td></tr>
+<tr><td>c:</td><td><td>W3</td></tr>
+<tr><td>d:</td><td><td>A79</td></tr>
+<tr><td>e:</td><td><td>W7</td></tr>
+<tr><td>f:</td><td><td>B64</td></tr>
+<tr><td>g:</td><td><td>B46</td></tr>
+<tr><td>h:</td><td><td>B6</td></tr>
+<tr><td>i:</td><td><td>C63</td></tr>
+<tr><td>j:</td><td><td>C37</td></tr>
+<tr><td>k:</td><td><td>C3</td></tr>
+<tr><td>m:</td><td><td>D45</td></tr>
+<tr><td>n:</td><td><td>D54</td></tr>
+<tr><td>p:</td><td><td>E9</td></tr>
+<tr><td>q:</td><td><td>S5</td></tr>
+</table>
+</td></tr></table>
+
+<table><tr>
+<td valign=top>
+<h3>III. More Landmark Points</h3>
+
+<p>The nine stars are deemed essential landmarks of the board. Yet it is still too big and sparse, that counting grids to ascertain positions is boring, tedious and error-prone. Hence, a group of secondary landmark points are elected, and they are the mid points between adjacent stars. See the diagram to the right.</p>
+<p>For instance, the mid point between stars A and S is noted as AS; between A and W, AW; and between A and O, AO. Genius!</p>
+<p>Thusly, we have identified 9 top-tier and 16 second-tier landmark points, totalling 25.</p>
+</td>
+<td width="40px"></td><td valign=top>
+<td valign=top> <script>drawBoard(board1.replace('c','@').replace('e','&').replace('o','@').replace('p','@').replace('q','@'), true, false, true);</script> 
+</td></tr></table>
+
+<h3>IV. Neighboring Positions</h3>
+
+<p>For each landmark position, its four neighbors are given special treatment as well. They are noted with the landmark position annotated with ^, <, >, and v, respectively. This satisfies our insatiable desire to rid those dreaded numbers as much as possible. Note again, the orientations are for the player of black. Below is an illustration.</p>
+
+<table><tr>
+<td valign=top> <script>drawBoard(board2, true, true);</script> 
+
+<p>&nbsp;</p>
+
+<h3>V. Conclusion</h3>
+
+<p>Violà! By now you should realize that the 4Q Go Game Format is the best thing you have ever encountered since the invention of the sliced bread. Please summarize for yourself and make it a part of your naturally thinking, and with that, a piece of paper and a pencil is all you need to record your journey of world conquoring adventures!</p>
+
+<p><a style="background:#FFE0F0" href="4qdemo-e.html">This demo</a> lets you research, contrast and relate various coordinate systems used for Go game records. For 4Q, it lists all the possible notations for each position.</p>
+
+<p><a style="background:#FFE0F0" href="tool-e.html">This Conversion Tool</a> lets you convert game formats between 4Q and SGF.</p>
+</td>
+<td width="40px"></td><td valign=top>
+<p style="padding-top:60px">Hence, A43 is also Av; A78 is equivalent to AO^；S9 is noted as Ov.</p>
+<p>Up to this point, the system has 125 positions that do not need any digits to aid positioning. Adding the remaining 36 points which need only one digit, there are in total 161 positions that practically require no grid-counting to identify the locations.</p>
+<p>Of course, if you are not comfortable with this scheme for whatever reasons, you can just use numeric XY coordinates, which are relative and short. It is more likely that you may choose some but not all. In any case, it is totally up to you.</p>
+
+<p>Let us take a look at a fictitious fuseki, to learn the intriguing truth about this wondrous <i>4Q Go Game Format</i>.<br><img src="fictitious-fuseki.jpg"></p>
+
+</td></tr></table>
+
+<p>&nbsp;</p>
+<hr>
+<div align=center>First version of text in May, 2024</div>
+</div></body></html>

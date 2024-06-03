@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta charset="utf-8">
+<script src="4q.js"></script>
+<script src="LaiJunFu-JiangDongRun-20240520.js "></script>
+</head>
+<body>
+<h2>Testing 4q</h2>
+
+<script>
+var tests =
+// -------------------------------------------------------
+`
+9 8 A98 | 19 8 D18 | 8 19 B81 | 8 11 B89 | 17 15 C35
+
+10 10 O
+10 11 O^ N9 | 10 9 Ov S9 | 11 10 O> E9 | 9 10 O< W9
+
+4 4 A A4 A44 | 9 9 A9 A99 | 3 3 A3 A33 | 1 1 A1 A11
+3 4 A< A34 | 5 4 A> A54 | 4 5 A^ A45 | 4 3 Av A43
+7 4 AS A74 | 6 4 AS< A64 | 8 4 AS> A84 | 7 5 AS^ A75 | 7 3 ASv A73
+4 7 AW A47 | 3 7 AW< A37 | 5 7 AW> A57 | 4 8 AW^ A48 | 4 6 AWv A46
+
+4 16 B B4 B44 | 9 11 B9 B99 | 3 17 B3 B33 | 1 19 B1 B11
+3 16 B< B34 | 5 16 B> B54 | 4 17 B^ B43 | 4 15 Bv B45
+7 16 BN B74 | 6 16 BN< B64 | 8 16 BN> B84 | 7 17 BN^ B73 | 7 15 BNv B75
+4 13 BW B47 | 3 13 BW< B37 | 5 13 BW> B57 | 4 14 BW^ B46 | 4 12 BWv B48
+
+16 16 C C4 C44 | 11 11 C9 C99 | 17 17 C3 C33 | 19 19 C1 C11
+15 16 C< C54 | 17 16 C> C34 | 16 17 C^ C43 | 16 15 Cv C45
+13 16 CN C74 | 12 16 CN< C84 | 14 16 CN> C64 | 13 17 CN^ C73 | 13 15 CNv C75
+16 13 CE C47 | 15 13 CE< C57 | 17 13 CE> C37 | 16 14 CE^ C46 | 16 12 CEv C48
+
+16 4 D D4 D44 | 11 9 D9 D99 | 17 3 D3 D33 | 19 1 D1 D11
+15 4 D< D54 | 17 4 D> D34 | 16 5 D^ D45 | 16 3 Dv D43
+13 4 DS D74 | 12 4 DS< D84 | 14 4 DS> D64 | 13 5 DS^ D75 | 13 3 DSv D73
+16 7 DE D47 | 15 7 DE< D57 | 17 7 DE> D37 | 16 8 DE^ D48 | 16 6 DEv D46
+
+16 10 E E4 | 15 10 E< E5 | 17 10 E> E3 | 16 11 E^ C49 | 16 9 Ev D49
+13 10 EO E7 | 12 10 EO< E8 | 14 10 EO> E6 | 13 11 EO^ C79 | 13 9 EOv D79
+
+4 10 W W4 | 3 10 W< W3 | 5 10 W> W5 | 4 11 W^ B49 | 4 9 Wv A49
+7 10 WO W7 | 6 10 WO< W6 | 8 10 WO> W8 | 7 11 WO^ B79 | 7 9 WOv A79
+
+10 4 S S4 | 9 4 S< A94 | 11 4 S> D94 | 10 5 S^ S5 | 10 3 Sv S3
+10 7 SO S7 | 9 7 SO< A97 | 11 7 SO> D97 | 10 8 SO^ S8 | 10 6 SOv S6
+
+10 16 N N4 | 9 16 N< B94 | 11 16 N> C94 | 10 17 N^ N3 | 10 15 Nv N5
+10 13 NO N7 | 9 13 NO< B97 | 11 13 NO> C97 | 10 14 NO^ N6 | 10 12 NOv N8
+
+`
+// -------------------------------------------------------
+.split('\n');
+
+function w() { for(var i in arguments) document.write(arguments[i]) }
+
+function test() {
+  var failCnt = 0, totalTests = 0;
+
+  function test4q(x, y) {
+    for (var i=2; i<arguments.length; ++i) {
+      ++totalTests;
+      var pos = POS_REPO[arguments[i]];
+      if (!pos) {
+        w('<li>Failed: testing ', x, ', ', y, ' -- got no results.</li>');
+        console.log('[Error] testing', x, ',', y, '-- got no results.');
+        ++failCnt;
+      }
+      else if (pos.x != x || pos.y != y) {
+        w('<li>Failed: testing ', x, ', ', y, ' -- expecting ', arguments[i], ' but got a wrong one: { ',
+          pos.x, ', ', pos.y, ', ', pos.name, ' }.</li>');
+        console.log('[Error] testing', x, ',', y, '-- got', pos);
+        ++failCnt;
+      }
+    }
+  }
+
+  w('<ol>');
+  for(var i in tests) {
+    var ln = tests[i].trim();
+    var idx = ln.indexOf('#');
+    if (idx >= 0) ln = ln.substring(0, idx).trim();
+    if (!ln) continue;
+    var a = ln.split('|');
+    for (var j in a) {
+      ln = a[j].trim();
+      test4q(...ln.split(' '));
+    }
+  }
+  w('</ol>');
+
+  w('<p>Total tests: ', totalTests, '</p>');
+  w('<p>Failed tests: ', failCnt, '</p>');
+}
+
+var game = new FourQ(game4qtxt);
+w('<p>Loaded game "', game.getDescription(), '". Total ', game.numOfMoves(), ' moves.</p>');
+</script>
+
+</body></html>

@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>4Q Demo</title>
+<style>
+a { text-decoration:none }
+</style>
+<script src="4q.js"></script>
+<script src="LaiJunFu-JiangDongRun-20240520.js "></script>
+</head>
+<body bgcolor="#e7f0bb">
+<div align=center>
+<script>
+function w() { for(var i in arguments) document.write(arguments[i]) }
+function get(name) {
+ if (name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+   return decodeURIComponent(name[1]);
+}
+
+var type = get('type') || TYPE_4Q;
+
+function mv2disp(mv, isFirst) {
+  var styl = '';
+  if (mv)
+    styl += (mv.player == 'B')
+            ? 'background-color:#444;color:yellow;'
+            : 'background-color:#eee;color:blue;';
+
+  if (isFirst)
+    w('<td align="right" style="opacity:0.8; border-left:2px solid black; color:red">');
+  else
+    w('<td align="right" style="opacity:0.8; color:red">');
+  if (mv) w(mv.num, '.');
+  var tip = '';
+  if (mv && mv.pos) {
+    tip = '4Q：' + mv.pos.allNicknames(true) +
+          '\nXY(' + mv.pos.absNumericXY() + '), SGF[' + mv.pos.sgfXY() + '] ';
+  }
+  w('&nbsp;</td><td align="center" style="', styl, '" title="', tip, '">');
+  if (mv) {
+    if (mv.isError())
+      w('<font color=red title="', mv.errMsg(), '">', mv.getPosName(), '</font>');
+    else
+      w(mv.getPosName(type));
+  }
+  w('</td>');
+}
+
+const COLSIZE = 30;
+var game = new FourQ(game4qtxt);
+var len = game.record.length;
+var cols = Math.ceil(len / COLSIZE);
+var a2d = [], i, j;
+for (i=0; i<cols; ++i) a2d.push([]);
+var colidx = 0, colcnt = 0, isB = true;
+for (i=0; i<len; ++i) {
+  a2d[colidx].push(game.record[i]);
+  if (++colcnt >= COLSIZE) { colcnt = 0; ++colidx; }
+}
+
+w('<table><tr><td align="right"><h2>4Q Demo</h2><img src="LaiJunFu-JiangDongRun-20240520.jpg"></td><td width="20px"></td>',
+  '<td style="padding-top:20px">');
+w('<table bgcolor="white" border=0 bordercolor=red cellspacing="0" cellpadding="0"><caption style="padding-bottom:10px">');
+var keys = Object.keys(etypes), first = true;
+for (var i in keys) {
+  if (first) first = false; else w('&nbsp;&nbsp;&nbsp;&nbsp;');
+  var k = keys[i];
+  if (type == k)
+    w('<span style="background-color:yellow">', etypes[k], '</span>');
+  else
+    w('<a href="?type=', k, '">', etypes[k], '</a>');
+}
+w('<br>(Move the mouse cursor over positions to see all kinds of expressions.)</caption>');
+for (i=0; i<COLSIZE; ++i) {
+  w('<tr>');
+  for (j=0; j<cols; ++j) {
+    var styl = '';
+    mv2disp(a2d[j][i], j==0);
+    w('</td><td width="20px" style="border-right:', (j==cols-1)?2:1, 'px solid black">&nbsp;</td>');
+  }
+  w('</tr>');
+}
+w('</table></td></tr></table>');
+</script>
+
+</div></body></html>

@@ -1,0 +1,151 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>4Q圍棋記譜法</title>
+<style>
+body { font-size:22px }
+td { font-size:22px }
+a { text-decoration:none }
+bd  { background-color:#eeeeee; color:gray; }
+.bdfont { font-size:18px }
+lm1 { color:red; font-weight:bold; background-color:yellow }
+lm2 { color:red; font-weight:bold; }
+ln  { color:blue; background-color:lightgreen; }
+nbr { color:red; font-weight:normal; }
+ex  { background-color:lightpink; color:blue }
+sta { color:black; font-weight:bold }
+bla { color:white; background-color:black }
+whi { color:black; background-color:lightgray }
+</style>
+<script src="intro.js"></script>
+<body bgcolor="#e7f0bb">
+<div align=center>
+
+<table width="1200px"><tr><td width="300px"></td><td align=center><h2>4Q 圍棋記譜法</h2></td>
+<td width="300px" align=right valign=top style="font-size:16px"><a href="intro-e.html">English</a> | <a href="intro-j.html">简体字</a></td></tr></table>
+
+<div style="width:1200px" align=left>
+
+<p>一紙一筆，輕松記譜；棋子方位，一目了然。4Q記譜法的目標就是特別方便人眼察看、記錄。例如，四個三三的位置分別標記為：A3，B3，C3，D3；或者為A33等，依個人喜好。性急的朋友可以直接看<a style="background:#FFE0F0" href="4qdemo.html">這個演示</a>。</p>
+
+<h3>一、九方位、多地標、相對記譜</h3>
+
+<p>4Q記譜法的全名是「四象限圍棋記譜法」。細究起來，可謂「九方位、多地標、相對記譜法」。顧名思義，此法劃分棋盤為九部分，棋子的方位快速顯現；多以地標相對關係標示，避免、減少數格子，精確定點。其效果是，全盤近半的位置可以不用XY座標；座標值都是單位數，而且是相對於四個角的頂點，十分容易查找、對應。這在在的一切，都是為了方便人腦對子位的解讀，盡量減少、簡化中間翻譯過程。</p>
+
+<p>四象限記譜法，絕非首創；然目下此法當接近於最優解。或有雷同者，殊無怪也；未曾廣徵博研，純粹自創。畢竟這也不是什麼了不起的大難題。但結果和效用令人振奮！</p>
+
+<h3>二、最基本型</h3>
+
+<p>九個方位是：四個9x9的象限，四條中間線，外加天元。九部分剛好對應九顆星。</p>
+
+<table><tr>
+<td valign=top> <script>drawBoard(board0, false, false, true);</script> </td>
+<td width="40px"></td><td valign=top>
+<ol style="padding-top:40px">
+<li style="padding-top:20px">四個象限命名為甲、乙、丙、丁，記作A、B、C、D；<br>以持黑棋者的左下角為甲，順時針次序遞進。
+    <ul><li>座標取橫先豎後，由頂而出，頂點值為1。</li>
+        <li>對角線上點的座標縱橫值相等，可化簡為一。<br>比如B22可以寫成B2。</li></ul></li>
+<li style="padding-top:20px">四顆邊星命名為東、南、西、北，記作E、S、W、N，<br>以持黑棋者作正觀。
+  <ul><li>座標只需一個數字，以邊點為1、至天元邊為9。</li></ul></li>
+<li style="padding-top:20px">天元記作O。</li>
+<li style="padding-top:20px">九顆星直接用其所屬部分之名為其表達式。</li>
+</ol>
+</td></tr></table>
+
+<p>如下諸例。</p>
+
+<table><tr>
+<td valign=top> <script>drawBoard(board1, false, true);</script> </td>
+<td width="40px"></td><td valign=top style="padding-top:70px; padding-left:100px">
+<table>
+<tr><td>a:</td><td><td>A32</td></tr>
+<tr><td>b:</td><td><td>A25</td></tr>
+<tr><td>c:</td><td><td>W3</td></tr>
+<tr><td>d:</td><td><td>A79</td></tr>
+<tr><td>e:</td><td><td>W7</td></tr>
+<tr><td>f:</td><td><td>B64</td></tr>
+<tr><td>g:</td><td><td>B46</td></tr>
+<tr><td>h:</td><td><td>B6</td></tr>
+<tr><td>i:</td><td><td>C63</td></tr>
+<tr><td>j:</td><td><td>C37</td></tr>
+<tr><td>k:</td><td><td>C3</td></tr>
+<tr><td>m:</td><td><td>D45</td></tr>
+<tr><td>n:</td><td><td>D54</td></tr>
+<tr><td>p:</td><td><td>E9</td></tr>
+<tr><td>q:</td><td><td>S5</td></tr>
+</table>
+</td></tr></table>
+
+<table><tr>
+<td valign=top>
+<h3>三、更多地標點</h3>
+
+<p>九個星位堪稱基本地標。然棋盤浩大，需更多地標。為此，選擇兩星之中點，作為第二級地標點，如右圖。</p>
+<p>譬如A星，它與S星之間的中間點記為AS，與W星中間點記為AW，與天元中間點記為AO。其餘象限以此類推。</p>
+<p>如此，得一級地標點9個，二級地標點16個，總計25個。</p>
+</td>
+<td width="40px"></td><td valign=top>
+<td valign=top> <script>drawBoard(board0, true, false, true);</script> 
+</td></tr></table>
+
+<h3>四、地標相鄰點</h3>
+
+<p>我們對地標點的上下左右也賦予特別表達，分別附記以^、<、>、v。友情提示：相對關係是黑方棋手的取向。如此得下面的示意圖。</p>
+
+<table><tr>
+<td valign=top> <script>drawBoard(board2, true, true);</script> 
+
+<p>&nbsp;</p>
+
+<h3>五、結語</h3>
+
+<p>4Q就這麼簡單、好記、好用。請各位自己總結，釐清思路。下次鬥棋時，勿忘帶上一紙一筆，隨時記譜。<br>
+祝你棋藝日日漲，越活越年輕！</p>
+
+<p><a style="background:#FFE0F0" href="4qdemo.html">這個演示</a>讓你參照、比較各種座標系統，包括同個點位4Q所支持的所有可接受表達式。</p>
+
+<p><a style="background:#FFE0F0" href="tool-j.html">這個轉換工具</a>可以在4Q和SGF之間互相轉換。</p>
+</td>
+<td width="40px"></td><td valign=top>
+<p style="padding-top:60px">譬如A43，也可標為Av；A78可標為AO^；S9可標為Ov。</p>
+<p>如此，完全不用座標值的點共有125個。加上其餘的單位數座標36個，總共有161個位置不用數格子就可定位。</p>
+<p>當然，如果你不願意用這些表達方式，而單用、或部分用數字座標，也是沒有錯的，可以自由選擇。</p>
+
+<p>下面來看一個假想的佈局作為例子。<br><img src="fictitious-fuseki.jpg"></p>
+
+<!-- <table><tr>
+<td valign=top> <img src="fictitious-fuseki.PNG"> </td>
+<td width="50px"></td><td valign=top>
+<table>
+<tr><td>1:</td><td>C</td></tr>
+<tr><td>2:</td><td>A></td></tr>
+<tr><td>3:</td><td>Dv</td></tr>
+<tr><td>4:</td><td>B</td></tr>
+<tr><td>5:</td><td>D93</td></tr>
+<tr><td>6:</td><td>A&lt;</td></tr>
+<tr><td>7:</td><td>N</td></tr>
+<tr><td>8:</td><td>DS</td></tr>
+<tr><td>9:</td><td>D^</td></tr>
+<tr><td>10:</td><td>DO</td></tr>
+<tr><td>11:</td><td>B3</td></tr>
+<tr><td>12:</td><td>Bv</td></tr>
+<tr><td>13:</td><td>B^</td></tr>
+<tr><td>14:</td><td>B></td></tr>
+<tr><td>15:</td><td>B62</td></tr>
+<tr><td>16:</td><td>W</td></tr>
+<tr><td>17:</td><td>BN^</td></tr>
+<tr><td>18:</td><td>C3</td></tr>
+<tr><td>19:</td><td>C^</td></tr>
+<tr><td>20:</td><td>C></td></tr>
+<tr><td>21:</td><td>Cv</td></tr>
+<tr><td>22:</td><td>C26</td></tr>
+</table>
+</td>
+</tr></table> -->
+
+</td></tr></table>
+
+<p>&nbsp;</p>
+<hr>
+<div align=center>文初成於公元2024年5月</div>
+</div></body></html>
