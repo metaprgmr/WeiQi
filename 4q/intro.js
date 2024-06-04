@@ -244,8 +244,8 @@ var template =
 #Game-Name    : 本局名称
 #Event        : 比赛、活动名称
 #Place        : 地点
-#Comment      : 随便记点什么
 #Date         : 2024-5-20
+#Comment      : 随便记点什么
 C3_ B<_ A__ Dv_ O__ ___ ___ ___ ___ ___ // 1 - 10
 ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ // 11 - 20
 ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ // 21 - 10
@@ -296,19 +296,40 @@ function generate(type) {
 function showToolUI(lang) {
   if (lang) LANG = lang;
   var en = LANG == 'en';
-  var label0 = en ? 'Set 4Q Template' : '显示4Q模版';
-  var label1 = en ? 'Set Sample 4Q' : '显示4Q实例';
-  var label2 = en ? 'Set Sample SGF' : '显示SGF实例';
-  var label3 = en ? 'Clear' : '清除';
+  var label0 = en ? 'Clear' : '清除';
+  var label1 = en ? '4Q Template' : '4Q模版';
+  var label2 = en ? 'Sample 4Q' : '4Q实例';
+  var label3 = en ? 'Sample SGF' : 'SGF实例';
   var label4 = en ? 'Convert' : '转换';
+  var sgfHint = en
+? `
+Paste 4Q or SGF content in here, then hit the button
+to convert to the other format.
+
+To enter a new game in 4Q, hit “4Q Template“ first
+and then modify.
+
+The support for SGF is limited in capacity.
+Only SGFs with a single main trunk are accepted, and
+the Comment (C[]) must be on a single line.
+Go game UI software typically allow to simplify SGF
+records.`
+: `
+将4Q或SGF棋局内容粘贴于此，然后按键转换到另一个格式。
+
+若要输入新棋局，可以先按“4Q模版“，在此基础上编辑。
+
+SGF文件的支持能力非常有限。
+只能接受单枝主树文件，并且评论记号（C[]）只能是单行。
+通常围棋界面软件可以帮助简化SGF记录。`;
   w(
 `<table border=0 width="1000px"><tr><td valign="top">
-<textarea id="editor" cols="60" rows="36"></textarea>
+<textarea id="editor" cols="60" rows="36" placeholder="${sgfHint}"></textarea>
 <p>
-<a href="javascript:setSample(null)">${label3}</a>
-&nbsp;&nbsp;&nbsp;<a href="javascript:setSample(template)">${label0}</a>
-&nbsp;&nbsp;&nbsp;<a href="javascript:setSample(sample4q)">${label1}</a>
-&nbsp;&nbsp;&nbsp;<a href="javascript:setSample(sampleSGF)">${label2}</a>
+&nbsp;<a href="javascript:setSample(null)">${label0}</a>
+&nbsp;&nbsp;&nbsp;<a href="javascript:setSample(template)">${label1}</a>
+&nbsp;&nbsp;&nbsp;<a href="javascript:setSample(sample4q)">${label2}</a>
+&nbsp;&nbsp;&nbsp;<a href="javascript:setSample(sampleSGF)">${label3}</a>
 &nbsp;&nbsp;&nbsp;<a href="javascript:setSample(sampleC3_A_O)">C3-A-O</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="generate()">${label4}</button></p>
 </td>
