@@ -256,7 +256,7 @@ class FourQ {
     expHdr('Source');
 
     for (var i=0; i<this.record.length; ++i) {
-      if ((i % 10 === 0) && (i > 0)) ret += '\n';
+      if ((i % 10 === 0) && (i > 0)) ret += ' // ' + (i-9) + ' to ' + i + '\n';
       else if (i>0) ret += ' ';
       var n = this.record[i].getPosName(type);
       while (n.length < 3) n += ' ';
@@ -338,12 +338,16 @@ class FourQ {
         ; // TODO: handle game-wise comment
       }
       else { // record lines
+        var idx = ln.indexOf('//');
+        if (idx > 0) ln = ln.substring(0,idx).trim();
         x = ln.split(' ');
         for (var y in x) {
           var val = x[y];
           if (!val) continue;
-          this._parseCoord(mvnum++, isB, val);
-          isB = !isB;
+          if (this._parseCoord(mvnum, isB, val)) {
+            ++mvnum;
+            isB = !isB;
+          }
         }
       }
     }
@@ -353,6 +357,8 @@ class FourQ {
   }
 
   _parseCoord(num, isB, txt) {
+    txt = txt.replaceAll('_', '').trim();
+    if (txt.length === 0) return null;
     var idx = txt.indexOf('//'), comment;
     if (idx > 0) {
       comment = txt.substring(idx+2).trim();
@@ -363,7 +369,7 @@ class FourQ {
       num = parseInt(a[0].trim());
       a = a[1].trim();
     }
-    this.addMove(num, a, isB, comment);
+    return this.addMove(num, a, isB, comment);
   }
 
 } // end of class FourQ.
