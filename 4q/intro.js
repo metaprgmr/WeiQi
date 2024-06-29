@@ -238,6 +238,7 @@ var template =
 #Player-White : 白水妙仙
 #White-Rank   : 7d
 #Game-Size    : 19
+#Rule         : 日本规则
 #Handicap     : 0
 #Komi         : 6.5
 #Result       : B+res 白中盘胜 黑赢12.5目 W+0.5
